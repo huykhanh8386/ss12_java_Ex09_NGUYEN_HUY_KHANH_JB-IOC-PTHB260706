@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("--- BAT DIEU HOA VA DEN THONG MINH ---");
+        System.out.println("\n--- NHAP DIEU HOA ---");
+        System.out.print("Nhap ma thiet bi: ");
+        String acId = sc.nextLine();
+        System.out.print("Nhap ten dieu hoa: ");
+        String acName = sc.nextLine();
+        System.out.println("\n--- NHAP DEN ---");
+        System.out.print("Nhap ma thiet bi: ");
+        String lightId = sc.nextLine();
+        System.out.print("Nhap ten den: ");
+        String lightName = sc.nextLine();
+        SmartAirConditioner airConditioner = new SmartAirConditioner(acId, acName);
+        SmartLight light = new SmartLight(lightId, lightName);
+        airConditioner.powerOn();
+        light.powerOn();
+        double acPower = airConditioner.getDailyPowerConsumptionKWh();
+        double lightPower = light.getDailyPowerConsumptionKWh();
+        double totalPower = acPower + lightPower;
+        System.out.println();
+        System.out.println("+-------------------------------------------------------+");
+        System.out.println("|           GIAM SAT NANG LUONG TOA NHA                |");
+        System.out.println("+-------------------------------------------------------+");
+        System.out.printf("| [%s] %-22s | Trang thai: %-3s | %5.2f kWh |%n", airConditioner.getDeviceId(), airConditioner.getName(), airConditioner.isOn() ? "ON" : "OFF", acPower);
+        System.out.printf("| [%s] %-22s | Trang thai: %-3s | %5.2f kWh |%n", light.getDeviceId(), light.getName(), light.isOn() ? "ON" : "OFF", lightPower);
+        System.out.printf("| -> TONG DIEN NANG TIEU THU: %.2f kWh / ngay          |%n", totalPower);
+    }
+}
